@@ -9,7 +9,13 @@ pipeline {
     stages {
         stage ('Build') {
           steps {
-              sh "make build"
+            script {
+              def root = tool name: 'go-1.8.3', type: 'go'
+              withEnv(["GOPATH=${env.WORKSPACE}/go", "GOROOT=${root}", "GOBIN=${root}/bin", "PATH+GO"=${root}/bin"]) {
+                go env
+                make build
+              }
+            }
           }
         }
     }
