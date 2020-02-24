@@ -11,9 +11,9 @@ pipeline {
           steps {
             script {
               def root = tool name: 'go-1.13.8', type: 'go'
-              withEnv(["GOPATH=${WORKSPACE}/go", "GOROOT=${root}", "GOBIN=${root}/bin", "PATH+GO=${root}/bin"]) {
-                go env
-                make build
+              withEnv(["GOPATH=${env.WORKSPACE}/go", "GOROOT=${root}", "GOBIN=${root}/bin", "PATH+GO=${root}/bin"]) {
+                sh 'go env'
+                sh 'make build'
               }
             }
           }
