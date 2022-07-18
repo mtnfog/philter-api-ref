@@ -1,5 +1,4 @@
 build:
-	go get ./...
 	go build -o philter-api-ref philter-api-ref.go
 
 run:
